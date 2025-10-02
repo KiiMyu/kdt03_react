@@ -8,7 +8,7 @@ export default function MyList() {
 
     //console.log(data)
     const tags = data.map(item => <MyListCard key={item.title} title={item.title} imgUrl={item.imgUrl} content={item.content}/>);
-    console.log(tags)
+    //console.log(tags)
 
     return (
         <div className=" w-9/10 grid grid-cols-1 md:grid-cols-2 gap-4">
