@@ -11,7 +11,7 @@ export default function MyList() {
     //console.log(tags)
 
     return (
-        <div className=" w-9/10 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className=" w-8/10 grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* <MyListCard title={title} imgUrl={imgUrl} content={content}/>
             <MyListCard title={title} imgUrl={imgUrl} content={content}/>
             <MyListCard title={title} imgUrl={imgUrl} content={content}/>

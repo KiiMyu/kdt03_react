@@ -8,6 +8,8 @@ export default function MyListCard({title, imgUrl, content}) {
     const handleClick = () => {
         // 3. 상태 변경을 위해 setScnt를 사용하면, scnt를 변경할 수 있음.
         setScnt(scnt + 1);
+        // 
+        setScnt(prev => prev + 1);
 
         console.log(`${title} click : ${scnt}` )
     }
