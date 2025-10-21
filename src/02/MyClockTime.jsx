@@ -6,10 +6,12 @@ export default function MyClockTime () {
 
     const[ currentTime, setCurrentTime ] = useState(new Date());
 
-    useEffect(()=>{
-        setInterval(() => {
+    useEffect(() => {
+        let timerId = setInterval(() => {
             setCurrentTime(new Date());
         }, 1000);
+
+        return () => clearInterval(new Date()); // 사라질때, 시간 돌아가는걸 없앰.
     }, [])
 
     return (
