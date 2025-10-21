@@ -8,6 +8,7 @@ import MyToggle from './05/MyToggle';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Lotto from './06/Lotto';
+import Food from './07/Food';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
      <Header/>
      <main className='container mx-auto flex flex-col flex-grow  overflow-auto'>
      {/* <MyToggle/> */}
-     <Lotto/>
+     {/* <Lotto/> */}
+     <Food/>
      </main>
     <Footer/>
       </div>
