@@ -6,6 +6,7 @@ export default function Header() {
                 <ul className='flex space-x-4'>
                   <li className='hover:font-bold'>home</li>
                   <li className='hover:font-bold'>lotto</li>
+                  <li className='hover:font-bold'>foodmarket</li>
                 </ul>
               </nav>
              </header>

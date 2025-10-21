@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Lotto from './06/Lotto';
 import Food from './07/Food';
+import MyEffect from './08/MyEffect';
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
      <main className='container mx-auto flex flex-col flex-grow  overflow-auto'>
      {/* <MyToggle/> */}
      {/* <Lotto/> */}
-     <Food/>
+     {/* <Food/> */}
+     {/* {<MyEffect />} */}
+     <MyClockTime/>
      </main>
     <Footer/>
       </div>

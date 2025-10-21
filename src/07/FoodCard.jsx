@@ -16,7 +16,7 @@ export default function FoodCard({ itemdata }) {
                 <img src={itemdata['구분'] == '광역지원센터' ? busan :
                     itemdata['구분'] == '기초푸드뱅크' ? bank : market} alt={itemdata['구분']} className='w-9/10 h-9/10' />
             </div>
-            <div className="w-3/4 h-full flex flex-col jusfity-between">
+            <div className="w-3/4 h-full flex flex-col justify-between">
                 <p className='text-3xl p-2 font-bold'>
                     {itemdata['사업장명']}
                 </p>
