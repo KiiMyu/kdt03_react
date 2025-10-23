@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import Lotto from './06/Lotto';
 import Food from './07/Food';
 import MyEffect from './08/MyEffect';
+import BoxOffice from './09/BoxOffice';
+import Traffic from './10/Traffic';
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
      {/* <Lotto/> */}
      {/* <Food/> */}
      {/* {<MyEffect />} */}
-     <MyClockTime/>
+      {/* <MyClockTime/> */}
+    {/* <BoxOffice /> */}
+    <Traffic />
      </main>
     <Footer/>
       </div>
