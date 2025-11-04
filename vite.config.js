@@ -5,4 +5,14 @@ import tailwind from '@tailwindcss/vite';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwind()], 
+  server: {
+    proxy: {
+      '/photo-api': {
+        target: 'https://apis.data.go.kr',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/photo-api/, ''),
+        secure: true
+      }
+    }
+  }
 })

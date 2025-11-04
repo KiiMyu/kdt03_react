@@ -20,12 +20,27 @@ export default function Traffic() {
     // 분류된 데이터.
     const [searchData, setSearchData] = useState([]);
 
-    const getFetchData = () => {
+    const getFetchData = async () => {
         //const url;
 
         //Fetch(url)
 
-        setTdata(trafficData);
+        // setTdata(trafficData);
+
+        let accidentURL = `https://api.odcloud.kr/api/15070282/v1/uddi:8449c5d7-8be5-4712-9093-968fc0b2d9fc?page=1&perPage=117&returnType=json&serviceKey=${import.meta.env.VITE_ACCIDENT_API}`;
+
+        try {
+        let accidentData = await fetch(accidentURL);
+        let data = await accidentData.json();
+
+        console.log(data);
+
+        setTdata(data.data);
+
+        } catch(error) {
+            console.error(err);
+        }
+
     }
 
     useEffect(() => {

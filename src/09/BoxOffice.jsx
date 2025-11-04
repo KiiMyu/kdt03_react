@@ -33,7 +33,7 @@ export default function BoxOffice() {
 
         console.log(url);
 
-        fetch(url)
+        fetch(url) // 대신 const resp = await fetch(url) 으로 쓸 수 있음. 대신 위에 async 도 선언해야함.
             .then(resp => resp.json())
             .then(data => {
                 //console.log(data)
