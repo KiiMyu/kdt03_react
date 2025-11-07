@@ -2,6 +2,7 @@ import React from 'react'
 import TailCard from '../components/TailCard'
 import TailButton from '../components/TailButton';
 import { useRef, useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 
 export default function BusanFestival() {
@@ -10,6 +11,9 @@ export default function BusanFestival() {
     const [jsonData, setJsonData] = useState();
     const [selectCountry, setSelectCountry] = useState('');
     const [gulist, setGulist] = useState([]);
+
+    const location = useLocation();
+    const gugunItem = location.state;
 
     const RenewCard = async () => {
 
@@ -32,6 +36,10 @@ export default function BusanFestival() {
         setSelectCountry(e.target.value);
     }
 
+    const ClickCardEvent = () => {
+
+    }
+
     useEffect(() => {
         RenewCard();
     }, [])
@@ -44,6 +52,11 @@ export default function BusanFestival() {
         let tm = jsonData.getFestivalKr.item.map(item => item.GUGUN_NM);
         tm = [...new Set(tm)].sort();
         setGulist(tm);
+        if (gugunItem != '') {
+            setSelectCountry(gugunItem);
+        } else {
+            setSelectCountry(tm[0]);
+        }
     }, [jsonData])
 
     return (
@@ -52,7 +65,7 @@ export default function BusanFestival() {
             <div className='w-9/10 flex flex-row justify-center items-center bg-amber-200 rounded-2xl px-2 mx-auto mb-4'>
                 <select value={selectCountry} ref={searchText} onChange={ChangeSelectValue} className='border border-gray-800 m-2 bg-white w-3/10 text-center' >
                     {
-                        gulist && gulist.map((item, index) => <option key={`GUGUN${index}`} value={item}>{item}</option> )
+                        gulist && gulist.map((item, index) => <option key={`GUGUN${index}`} value={item}>{item}</option>)
                     }
                 </select>
             </div>
@@ -60,10 +73,13 @@ export default function BusanFestival() {
                 {
                     jsonData && jsonData.getFestivalKr.item.map((item, index) => (
                         selectCountry == '' || selectCountry == item.GUGUN_NM ?
-                            <TailCard key={index} imageSrc={item.MAIN_IMG_THUMB} 
-                            title={item.MAIN_TITLE.indexOf('(') != -1 ? item.MAIN_TITLE.substring(0, item.MAIN_TITLE.indexOf('(')) : item.MAIN_TITLE} 
-                            description={item.ITEMCNTNTS.length > 30 ? item.ITEMCNTNTS.substring(0, 100) + "..." : item.ITEMCNTNTS} /> :
+                            <Link to="/festival/content" key={item.UC_SEQ + index} state={{ item }} >
+                                <TailCard key={index} imageSrc={item.MAIN_IMG_THUMB}
+                                    title={item.MAIN_TITLE.indexOf('(') != -1 ? item.MAIN_TITLE.substring(0, item.MAIN_TITLE.indexOf('(')) : item.MAIN_TITLE}
+                                    description={item.ITEMCNTNTS.length > 30 ? item.ITEMCNTNTS.substring(0, 100) + "..." : item.ITEMCNTNTS}
+                                    clickEvent={ClickCardEvent} /> </Link> :
                             ''
+
                     ))
                 }
             </div>

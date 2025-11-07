@@ -17,29 +17,61 @@ import RefCal from './12/RefCal';
 import Gallery from './13/Gallery';
 import BusanFestival from './14/BusanFestival';
 import RouteMain from './15/RouteMain';
+import FestivalContents from './14/FestivalContents';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import ChargeInfo from './16/ChargeInfo';
+import ChargerCard from './16/ChargerCard';
 
 function App() {
+
+  const pageMap = [
+    { name: "시계", url: "/", element: <MyClockTime />, isHide: false },
+    { name: "로또", url: "/lotto", element: <Lotto />, isHide: false },
+    { name: "푸드마켓", url: "/food", element: <Food />, isHide: false },
+    { name: "박스오피스", url: "/boxoffice", element: <BoxOffice />, isHide: false },
+    { name: "갤러리", url: "/gallery", element: <Gallery />, isHide: false },
+    { name: "축제정보", url: "/festival", element: <BusanFestival />, isHide: false },
+    { name: "festivalcontent", url: "/festival/content", element: <FestivalContents />, isHide: true },
+    { name: "자동차충전소", url: "/chargeinfo", element: <ChargeInfo />, isHide: false },
+    { name: "자동차충전소상세", url: "/chargeinfo/detail", element: <ChargerCard />, isHide: true},
+  ];
+
+  console.log(pageMap)
+
   return (
-    <div className='w-full h-screen flex flex-col overflow-y-hidden'>
-      {/* <MyDiv1/> */}
-      {/* <MyList /> */}
-      <Header />
-      <main className='container mx-auto flex flex-col flex-grow  overflow-auto'>
-        {/* <MyToggle/> */}
-        {/* <Lotto/> */}
-        {/* <Food/> */}
-        {/* {<MyEffect />} */}
-        {/* <MyClockTime/> */}
-        {/* <BoxOffice /> */}
-        {/* <Traffic /> */}
-        {/* <MyRef /> */}
-        {/* <RefCal /> */}
-        {/* <Gallery /> */}
-        {/* <BusanFestival /> */}
-        <RouteMain />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className='w-full h-screen flex flex-col overflow-y-hidden'>
+        {/* <MyDiv1/> */}
+        {/* <MyList /> */}
+        <Header pageMap={pageMap} />
+        <main className='container mx-auto flex flex-col flex-grow  overflow-auto'>
+          {/* <MyToggle/> */}
+          {/* <Lotto/> */}
+          {/* <Food/> */}
+          {/* {<MyEffect />} */}
+          {/* <MyClockTime/> */}
+          {/* <BoxOffice /> */}
+          {/* <Traffic /> */}
+          {/* <MyRef /> */}
+          {/* <RefCal /> */}
+          {/* <Gallery /> */}
+          {/* <BusanFestival /> */}
+          {/* <RouteMain /> */}
+          <Routes>
+            {
+              pageMap.map((item, index) => {
+                return <Route path={item["url"]} element={item["element"]} />
+              })
+            }
+            {/* <Route path="/" element={<MyClockTime />} />
+            <Route path="/lotto" element={<Lotto />} />
+            <Route path="/food" element={<Food />} />
+            <Route path="/festival/content" element={<BusanFestival />} /> */}
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
