@@ -15,12 +15,14 @@ import Traffic from './10/Traffic';
 import MyRef from './11/MyRef';
 import RefCal from './12/RefCal';
 import Gallery from './13/Gallery';
-import BusanFestival from './14/BusanFestival';
+import BusanFestival from './14_1/BusanFestival';
 import RouteMain from './15/RouteMain';
 import FestivalContents from './14/FestivalContents';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import ChargeInfo from './16/ChargeInfo';
 import ChargerCard from './16/ChargerCard';
+//import JotaiCnt from './17/JotaiCnt';
+import Todolist from './18/Todolist';
 
 function App() {
 
@@ -34,9 +36,11 @@ function App() {
     { name: "festivalcontent", url: "/festival/content", element: <FestivalContents />, isHide: true },
     { name: "자동차충전소", url: "/chargeinfo", element: <ChargeInfo />, isHide: false },
     { name: "자동차충전소상세", url: "/chargeinfo/detail", element: <ChargerCard />, isHide: true},
+    { name: "TodoList", url: "/todolist" , element: <Todolist />, isHide: false},
+       //{ name: "전역변수", url:"/jotaicnt", element: <JotaiCnt />, isHide: false},
   ];
 
-  console.log(pageMap)
+  // console.log(pageMap)
 
   return (
     <BrowserRouter>
