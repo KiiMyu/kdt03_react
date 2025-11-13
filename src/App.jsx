@@ -23,6 +23,7 @@ import ChargeInfo from './16/ChargeInfo';
 import ChargerCard from './16/ChargerCard';
 //import JotaiCnt from './17/JotaiCnt';
 import Todolist from './18/Todolist';
+import Subway from './19/Subway';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
     { name: "자동차충전소", url: "/chargeinfo", element: <ChargeInfo />, isHide: false },
     { name: "자동차충전소상세", url: "/chargeinfo/detail", element: <ChargerCard />, isHide: true},
     { name: "TodoList", url: "/todolist" , element: <Todolist />, isHide: false},
+    { name: "지하철공기정보", url: "/subway", element: <Subway />, isHide: false},
        //{ name: "전역변수", url:"/jotaicnt", element: <JotaiCnt />, isHide: false},
   ];
 

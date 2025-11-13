@@ -11,7 +11,7 @@ export default function Gallery() {
 
 //        let url = `https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?serviceKey=${import.meta.env.VITE_ACCIDENT_API}&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=${encodeURI(searchText.current.value)}&_type=json`
         
-        let url = `/photo-api/B551011/PhotoGalleryService1/gallerySearchList1?serviceKey=${import.meta.env.VITE_ACCIDENT_API}&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=${encodeURI(searchText.current.value)}&_type=json`
+        let url = `/api/B551011/PhotoGalleryService1/gallerySearchList1?serviceKey=${import.meta.env.VITE_ACCIDENT_API}&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=${encodeURI(searchText.current.value)}&_type=json`
         
         try {
             let resp = await fetch(url);
