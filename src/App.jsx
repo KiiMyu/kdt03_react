@@ -25,11 +25,15 @@ import ChargerCard from './16/ChargerCard';
 import Todolist from './18_3/Todolist';
 import Subway from './19/Subway';
 import Login from './Login';
+import { useAtomValue } from 'jotai';
+import { loginAtom } from './20/loginAtom';
 
 function App() {
+  const isLogin = useAtomValue(loginAtom);
 
   const pageMap = [
-    { name: "시계", url: "/", element: <MyClockTime />, isHide: false },
+    { name: "로그인", url: "/", element: <Login loginHandle={() => checkLoginHandle}/>, isHide: false},
+    { name: "시계", url: "/clock", element: <MyClockTime />, isHide: false },
     { name: "로또", url: "/lotto", element: <Lotto />, isHide: false },
     { name: "푸드마켓", url: "/food", element: <Food />, isHide: false },
     { name: "박스오피스", url: "/boxoffice", element: <BoxOffice />, isHide: false },
@@ -45,12 +49,16 @@ function App() {
 
   // console.log(pageMap)
 
+  const checkLoginHandle = (bLogin) => {
+    setbIsLogin(bLogin)
+  }
+
   return (
     <BrowserRouter>
       <div className='w-full h-screen flex flex-col overflow-y-hidden'>
         {/* <MyDiv1/> */}
         {/* <MyList /> */}
-        <Header pageMap={pageMap} />
+        { isLogin ? <Header pageMap={pageMap} /> : <Header pageMap={[]}/>}
         <main className='container mx-auto flex flex-col flex-grow  overflow-auto'>
           {/* <MyToggle/> */}
           {/* <Lotto/> */}
@@ -64,14 +72,13 @@ function App() {
           {/* <Gallery /> */}
           {/* <BusanFestival /> */}
           {/* <RouteMain /> */}
-          {/* <Routes>
+          {<Routes>
             {
               pageMap.map((item, index) => {
                 return <Route path={item["url"]} element={item["element"]} />
               })
             }
-          </Routes> */}
-          <Login />
+          </Routes>}
         </main>
         <Footer />
       </div>

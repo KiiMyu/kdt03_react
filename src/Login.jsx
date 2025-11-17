@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
 import { supabase } from './supabase/client';
+import { loginAtom } from './20/loginAtom';
+import { useAtom } from 'jotai';
 
-function Login() {
+function Login({ loginHandle }) {
   // session 상태를 저장하는 state
   const [session, setSession] = useState(null);
   // user 정보를 저장하는 state
   const [user, setUser] = useState(null);
+
+  const [isLogin, setIsLogin] = useAtom(loginAtom);
 
   // 컴포넌트가 마운트될 때 한 번 실행되는 useEffect
   useEffect(() => {
     // 현재 세션 정보를 가져와서 session state를 업데이트
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      // setIsLogin(session?.user ? true : false);
       // 세션이 있으면 user 정보를, 없으면 null을 user state에 저장
       setUser(session?.user || null);
     });
@@ -24,11 +29,18 @@ function Login() {
       setSession(session);
       // 세션이 있으면 user 정보를, 없으면 null을 user state에 저장
       setUser(session?.user || null);
+      loginHandle(session?.user || null);
     });
 
     // 컴포넌트가 언마운트될 때 리스너를 정리
     return () => subscription.unsubscribe();
   }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때 한 번만 실행되도록 함
+
+  useEffect(() => {
+    if(session) {
+      setIsLogin(true)
+    }
+  }, [session])
 
   // GitHub OAuth를 사용하여 로그인하는 비동기 함수
   const signInWithGithub = async () => {
@@ -40,6 +52,7 @@ function Login() {
   // 로그아웃하는 비동기 함수
   const signOut = async () => {
     await supabase.auth.signOut();
+    setIsLogin(false);
   };
 
   // 세션이 없는 경우 (로그인되지 않은 상태)
@@ -55,7 +68,7 @@ function Login() {
         </button>
       </div>
     );
-  } 
+  }
   // 세션이 있는 경우 (로그인된 상태)
   else {
     return (
@@ -64,7 +77,7 @@ function Login() {
         <h1 className="text-2xl font-bold mb-4">환영합니다, {user?.user_metadata?.user_name || user?.email}!</h1>
         {/* 사용자 이메일 표시 */}
         <p className="mb-4">이메일: {user?.email}</p>
-        
+
         <button
           onClick={signOut} // 버튼 클릭 시 로그아웃 함수 호출
           className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-500"
