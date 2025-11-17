@@ -24,6 +24,7 @@ import ChargerCard from './16/ChargerCard';
 //import JotaiCnt from './17/JotaiCnt';
 import Todolist from './18_3/Todolist';
 import Subway from './19/Subway';
+import Login from './Login';
 
 function App() {
 
@@ -63,17 +64,14 @@ function App() {
           {/* <Gallery /> */}
           {/* <BusanFestival /> */}
           {/* <RouteMain /> */}
-          <Routes>
+          {/* <Routes>
             {
               pageMap.map((item, index) => {
                 return <Route path={item["url"]} element={item["element"]} />
               })
             }
-            {/* <Route path="/" element={<MyClockTime />} />
-            <Route path="/lotto" element={<Lotto />} />
-            <Route path="/food" element={<Food />} />
-            <Route path="/festival/content" element={<BusanFestival />} /> */}
-          </Routes>
+          </Routes> */}
+          <Login />
         </main>
         <Footer />
       </div>
